@@ -17,7 +17,11 @@ const Login = () => {
     const { error } = await signIn(email, password)
     
     if (error) {
-      setError(error.message)
+      if (error.message === 'Invalid login credentials') {
+        setError('Invalid email or password. Please check your credentials and try again.')
+      } else {
+        setError(error.message)
+      }
     } else {
       navigate('/')
     }
